@@ -3,7 +3,7 @@ import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (onInput)
 
-
+-- Add age field
 
 -- MAIN
 
@@ -20,12 +20,13 @@ type alias Model =
   { name : String
   , password : String
   , passwordAgain : String
+  , age : String
   }
 
 
 init : Model
 init =
-  Model "" "" ""
+  Model "" "" "" ""
 
 
 
@@ -36,6 +37,7 @@ type Msg
   = Name String
   | Password String
   | PasswordAgain String
+  | Age String
 
 
 update : Msg -> Model -> Model
@@ -50,6 +52,9 @@ update msg model =
     PasswordAgain password ->
       { model | passwordAgain = password }
 
+    Age age ->
+      { model | age = age }
+
 
 
 -- VIEW
@@ -61,6 +66,7 @@ view model =
     [ viewInput "text" "Name" model.name Name
     , viewInput "password" "Password" model.password Password
     , viewInput "password" "Re-enter Password" model.passwordAgain PasswordAgain
+    , viewInput "age" "Enter Age" model.age Age
     , viewValidation model
     ]
 
